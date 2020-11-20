@@ -15,6 +15,8 @@ export default {
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 
+  css: ['~/assets/css/layout'],
+
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     '@nuxtjs/google-fonts',
@@ -30,7 +32,9 @@ export default {
         'faChevronRight',
         'faChevronLeft',
         'faDungeon',
-        'faSearch'
+        'faSearch',
+        'faPlus',
+        'faInfo'
       ],
     }
   },
