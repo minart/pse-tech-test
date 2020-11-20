@@ -1,0 +1,4 @@
+{
+  "eslint.validate": ["javascript"],
+  "exclude": ["node_modules", ".nuxt", "dist"]
+}
