@@ -34,7 +34,8 @@ export default {
         'faDungeon',
         'faSearch',
         'faPlus',
-        'faInfo'
+        'faInfo',
+        'faMinus'
       ],
     }
   },

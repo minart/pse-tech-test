@@ -1,13 +1,8 @@
 html {
     font-family:
-      'Source Sans Pro',
-      -apple-system,
-      BlinkMacSystemFont,
       'Segoe UI',
       Roboto,
-      'Helvetica Neue',
-      Arial,
-      sans-serif;
+      'Helvetica Neue';
     font-size: 16px;
     word-spacing: 1px;
     -ms-text-size-adjust: 100%;
@@ -24,6 +19,9 @@ html {
     margin: 0;
 }
 
+.uplvl { z-index: 20 }
+.price { font-size: 1.4em; color: #707070 }
+
 .subtitle {
     color: #ccc;
     font-size: 16px;
@@ -31,75 +29,41 @@ html {
     top: 5px;
     left: -50px;
 }
-  
-.logotype {
-    position: relative;
-    text-align: center;
-    margin-bottom: 40px;
-}
-  
 h1 {
     font-family: 'Caveat', cursive;
+    text-shadow: 0 1px 0 #333;
     color: #DEE5BC;
     line-height: 20px;
     font-size: 72px;
 }
-  
 h2 {
+    text-align: center;
     font-family: 'Segoe UI', Roboto;
     font-weight: 400;
     color: #707070;
     font-size: 1em;
 }
-  
-a {
-    text-decoration: none;
+a { text-decoration: none }
+.small { font-size: .7em }
+h3 {
+    margin-left: 20px;
+    font-family: 'Caveat', cursive;
+    color: #DEE5BC;
+    font-size: 45px;
 }
-  
-.layout {
-    padding: 1em;
-    box-sizing: border-box;
-    display: grid;
-    grid-gap: 0.5em;
-    height: 100vh;
-    width: 100vw;
-    grid-template-columns: 40px 40px auto 40px 40px;
-    grid-template-areas:
-      "mleft left center right mright";
-}
-  
-.max-left {
-    grid-area: mleft;
-}
-  
-.left {
-    display: flex;
-    grid-area: left;
-    align-items: center;
-}
-  
-.center {
-    grid-area: center;
-}
-  
-.max-right {
-    display: flex;
-    flex-direction: column;
-    grid-area: mright;
-}
-  
-.right {
-    display: flex;
-    align-items: center;
-    grid-area: right;
+
+.picture-border { 
+    border: 6px solid #fff;
+    box-shadow: 0 0 2px rgb(192, 192, 192);
 }
   
 .button {
+    background-color: #fff;
     font-size: 20px;
     border: 1px solid #000;
     height: 40px;
-    width: 40px;
     display: flex;
+    cursor: pointer;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -107,13 +71,23 @@ a {
 }
   
 .button.primary {
-    border: 1px solid #7A80CB;
-    color: #7A80CB;
+    border: 1px solid #ccc;
+    color: #ccc;
+}
+
+.button.empty {
+    border: 1px solid transparent;
+    color: #333;
 }
   
 .button.secondary {
     border: 1px solid #DEE5BC;
     color: #DEE5BC;
+}
+
+.button.secondary:hover {
+    color: #fff;
+    background-color: #DEE5BC;
 }
   
 .max-right .count {
@@ -121,8 +95,7 @@ a {
 }
   
 .max-right a.infos {
-    bottom: 1em;
-    position: fixed;
+    margin-top: auto;
 }
   
 .button.nav {
@@ -142,7 +115,7 @@ a {
     display: flex;
     padding: 0 14px;
     align-items: center;
-    border: 1px solid #ebebeb;
+    border: 1px solid #ccc;
     border-radius: 50px;
 }
 .search-box input {
