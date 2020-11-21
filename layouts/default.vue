@@ -15,10 +15,6 @@
         <div class="logotype">
           <p class="subtitle">Collection</p>
           <h1>Henri potier</h1>
-          <p class="search-box">
-            <input type="text" class="search" placeholder="Rechercher ...."/>
-            <font-awesome-icon :icon="['fas', 'search']"/>
-          </p>
         </div>
         <Nuxt />
       </div>
@@ -28,12 +24,11 @@
         </a>
       </div>
       <div class="max-right">
-        <a @click="cardOpened = !cardOpened" class="button secondary uplvl">
-          <font-awesome-icon :icon="['fas', 'shopping-cart']"/>
-        </a>
-        <div @click="cardOpened = !cardOpened" class="button secondary count uplvl">
-          {{ $store.getters['card/getTotalProducts'] }}
-        </div>
+        <CardButtons
+          :icon="getCardIcon"
+          :total="$store.getters['card/getTotalProducts']"
+          @click="cardOpened = !cardOpened"
+        />
         <a href="#" class="button secondary infos">
           <font-awesome-icon :icon="['fa', 'mug-hot']"/>
         </a>
@@ -42,9 +37,6 @@
     <Card
       :opened="cardOpened"
       :products="$store.getters['card/getContent']"
-      @add="$store.dispatch('card/add', $event)"
-      @remove="$store.dispatch('card/remove', $event)"
-      :key="2"
     />
   </div>
 </template>
@@ -55,13 +47,13 @@ export default {
     bookPage(){
       return this.$route.name === 'books-title';
     },
-  },
-  methods : {
+    getCardIcon(){
+      return this.cardOpened ? 'minus' : 'shopping-cart';
+    }
   },
   data(){
     return {
-      card: false,
-      cardOpened : false,
+      cardOpened : false
     }
   }
 }
@@ -83,7 +75,6 @@ export default {
     grid-template-areas:
       "mleft left center right mright";
 }
-
 .max-left { grid-area: mleft }
 .left {
     display: flex;

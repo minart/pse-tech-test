@@ -1,5 +1,9 @@
 <template>
   <div>
+    <p class="search-box">
+      <input type="text" class="search" placeholder="Rechercher ...."/>
+      <font-awesome-icon :icon="['fas', 'search']"/>
+    </p>
     <HomeGrid 
       :products="books"
       :columns="4"
@@ -21,26 +25,35 @@ export default {
 </script>
 
 <style>
-.price {
-  font-size: 1.4em;
-  color: #707070;
-  text-align: center;
+.search-box {
+    position: relative;
+    margin: 0 auto;
+    width: 200px;
+    top: 20px;
+    display: flex;
+    padding: 0 14px;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    margin-bottom: 40px;
 }
-.right-grid-book {
-  display: flex;
-  flex-direction: column;
+.search-box input {
+    font-size: 16px;
+    line-height: 20px;
+    color: #333;
+    margin: 4px;
+    border: 0;
+    width: 90%;
 }
-.picture-grid .actions {
-  position: absolute;
-  opacity: 0;
-  bottom: 0;
-  display: flex;
-  margin: -1px;
-  right: 0;
+.search-box input::placeholder {
+    color: #ebebeb;
+    font-style: italic;
 }
-.picture-grid .actions > div {
-  cursor: pointer;
+.search-box svg {
+    color: #DEE5BC;
 }
-
+.search-box input:focus {
+    outline: none;
+}
 
 </style>

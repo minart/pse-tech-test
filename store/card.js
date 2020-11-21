@@ -5,7 +5,8 @@ export const state = () => ({
 export const getters = {
     getContent: (state) => state.products,
     getTotalProductsPrice: (state) => state.products.reduce((acc, value) => value.totalPrice + acc, 0),
-    getTotalProducts: (state) => state.products.reduce((acc, value) => value.quantity + acc, 0)
+    getTotalProducts: (state) => state.products.reduce((acc, value) => value.quantity + acc, 0),
+    getAllProductsIsbn: (state) => state.products.map(product => product.isbn)
 }
 
 export const actions = {

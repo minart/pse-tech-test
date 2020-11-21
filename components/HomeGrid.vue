@@ -5,13 +5,13 @@
             <div class="right-grid-book">
                 <h2>{{ book.title }}</h2>
                 <p class="price">{{ book.price }}€</p>
-            </div>
-            <div class="actions">
-                <div @click="$emit('item-read', book)" class="button nav info">
-                    <font-awesome-icon :icon="['fas', 'info']" />
-                </div>
-                <div @click="$emit('item-add', book)" class="button secondary">
-                    <font-awesome-icon :icon="['fas', 'plus']" />
+                <div class="actions">
+                    <div @click="$emit('item-read', book)" class="button nav info">
+                        <font-awesome-icon :icon="['fas', 'info']" />
+                    </div>
+                    <div @click="$emit('item-add', book)" class="button secondary">
+                        <font-awesome-icon :icon="['fas', 'plus']" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -46,23 +46,40 @@ export default {
     width: 40px;
 }
 .picture-grid {
-  padding: 20px;
-  display: grid;
-  grid-gap: 0px;
+    display: grid;
+    grid-gap: 0px;
 }
 .picture-border { 
-  margin-right: 20px;
+    margin-right: 20px; 
+    align-self: flex-start;
 }
 .picture-grid > div {
-  display: flex;
-  position: relative;
-  padding: 20px;
-  border: 1px solid #fff;
+    display: flex;
+    transition: all .5s ease;
+    position: relative;
+    padding: 20px;
+    border: 1px solid #fff;
 }
 .picture-grid > div:hover {
-  border-bottom: 1px solid #DEE5BC;
+    border-bottom: 1px solid #DEE5BC;
+}
+.picture-grid .actions {
+    margin-top: auto;
+    opacity: 0;
+    transition: all .5s ease;
+    justify-content: center;
+    margin-bottom: -20px;
+    display: flex;
 }
 .picture-grid > div:hover .actions {
-  opacity: 1;
+    opacity: 1;
+    margin-bottom: 0;
+}
+.picture-grid .actions > div {
+    cursor: pointer;
+}
+.right-grid-book {
+    display: flex;
+    flex-direction: column;
 }
 </style>

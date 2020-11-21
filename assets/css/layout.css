@@ -4,12 +4,17 @@ html {
       Roboto,
       'Helvetica Neue';
     font-size: 16px;
+    color: #707070;
     word-spacing: 1px;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
+}
+
+body {
+    color: #707070;
 }
   
 *,
@@ -38,10 +43,12 @@ h1 {
 }
 h2 {
     text-align: center;
+    padding-top: 8px;
     font-family: 'Segoe UI', Roboto;
     font-weight: 400;
     color: #707070;
-    font-size: 1em;
+    line-height: 16px;
+    font-size: .9em;
 }
 a { text-decoration: none }
 .small { font-size: .7em }
@@ -51,7 +58,11 @@ h3 {
     color: #DEE5BC;
     font-size: 45px;
 }
-
+.price {
+    font-size: 1.4em;
+    color: #707070;
+    text-align: center;
+  }
 .picture-border { 
     border: 6px solid #fff;
     box-shadow: 0 0 2px rgb(192, 192, 192);
@@ -77,9 +88,11 @@ h3 {
 
 .button.empty {
     border: 1px solid transparent;
+    color: #ccc;
+}
+.button.empty:hover {
     color: #333;
 }
-  
 .button.secondary {
     border: 1px solid #DEE5BC;
     color: #DEE5BC;
@@ -104,35 +117,6 @@ h3 {
 }
   
 .button.nav:hover {
-    color: #333;
-}
-
-.search-box {
-    position: relative;
-    margin: 0 auto;
-    width: 200px;
-    top: 20px;
-    display: flex;
-    padding: 0 14px;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 50px;
-}
-.search-box input {
-    font-size: 16px;
-    line-height: 20px;
-    color: #333;
-    margin: 4px;
-    border: 0;
-    width: 90%;
-  }
-.search-box input::placeholder {
-    color: #ebebeb;
-    font-style: italic;
-}
-.search-box svg {
-    color: #DEE5BC;
-}
-.search-box input:focus {
-    outline: none;
+    background-color: #DBDBDB;
+    color: #fff;
 }
