@@ -1,10 +1,10 @@
 <template>
     <div class="item">
         <div class="actions">
-            <div @click="$emit('remove', index)" class="button empty small">
+            <div @click="$emit('remove')" class="button empty small">
                 <font-awesome-icon :icon="['fas', 'minus']"  />
             </div>
-            <div @click="$emit('add', book)" class="button empty small">
+            <div @click="$emit('add')" class="button empty small">
                 <font-awesome-icon :icon="['fas', 'plus']"  />
             </div>
         </div>
@@ -29,10 +29,6 @@ export default {
     props: {
         book: {
             type: Object
-        },
-        index: {
-            type: Number,
-            required: true
         }
     }
 }
@@ -63,7 +59,6 @@ export default {
     font-size: .8em; 
 }
 .price {
-    margin-right: 8px;
     margin-left: auto;
 }
 .title {
@@ -71,7 +66,7 @@ export default {
 }
 .count-picture {
     position: relative;
-    margin: 0 20px 0     10px;
+    margin: 0 20px 0 10px;
 }
 .unit-price {
     color: #ccc;

@@ -23,6 +23,10 @@ export default {
     '@nuxtjs/fontawesome',
   ],
 
+  plugins: [
+    '~/plugins/app'
+  ],
+
   fontawesome: {
     icons: {
       solid: [

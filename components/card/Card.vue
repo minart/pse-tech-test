@@ -1,9 +1,8 @@
 <template>
     <div class="card-container" :style="CSSMarginRight">
-        {{offer}}
         <header>
             <p class="panier-title" v-if="opened">Panier</p>
-            <p class="total-price">Total {{ $store.getters['card/getTotalProductsPrice'] }}€</p>
+            <p class="total-price">Total {{ totalPromo }}€</p>
         </header>
         <div class="card-picture-grid">
             <transition-group name="income">
@@ -11,9 +10,8 @@
                     v-for="(book, index) in products"
                     :key="book.isbn"
                     :book="book"
-                    :index="index"
-                    @add="$store.dispatch('card/add', $event)"
-                    @remove="$store.dispatch('card/remove', $event)"
+                    @add="$store.dispatch('card/add', book)"
+                    @remove="$store.dispatch('card/remove', index)"
                 />
             </transition-group>
             <div class="button secondary next" v-if="opened && products.length">Valider votre panier ></div>
@@ -22,6 +20,9 @@
 </template>
 
 <script>
+
+import Core from '~/core';
+
 export default {
     props: {
         products : {
@@ -38,14 +39,29 @@ export default {
         }
     },
     watch: {
-        products(){
-            if(this.products.length > 1)
-                this.getPromos();
-        }
-    },
-    data(){
-        return {
-            offer: false
+        products: {
+            deep: true,
+            async handler(){
+                const isbns = this.$store.getters['card/getAllIsbn'];
+                if(isbns){
+                    const { data } = await this.$api.offers(isbns);
+                    const formatedOffers = data.offers.map(offer => ({
+                        ...offer,
+                        calculate: function(price){
+                            return Core.offersCalculate[this.type]({
+                                price,
+                                step: this.sliceValue,
+                                value: this.value
+                            });
+                        }
+                    }));
+                    const total = this.$store.getters['card/total'];
+                    this.totalPromo = Math.min(...formatedOffers.map(offer => offer.calculate(total)));
+                }
+                else {
+                    this.totalPromo = 0;
+                }
+            }
         }
     },
     computed: {
@@ -56,12 +72,9 @@ export default {
             return this.products.length > 0 ? prop += '-350px' : prop += '-500px';
         }
     },
-    methods: {
-        async getPromos(){
-            const productsIsbn = this.$store.getters['card/getAllProductsIsbn'];
-            const url = `http://henri-potier.xebia.fr/books/${productsIsbn.join()}/commercialOffers`;
-            const { data } = await this.$axios.get(url);
-            this.offer = data;
+    data(){
+        return {
+            totalPromo: 0,
         }
     }
 }

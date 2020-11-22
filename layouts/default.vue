@@ -26,7 +26,7 @@
       <div class="max-right">
         <CardButtons
           :icon="getCardIcon"
-          :total="$store.getters['card/getTotalProducts']"
+          :total="$store.getters['card/count']"
           @click="cardOpened = !cardOpened"
         />
         <a href="#" class="button secondary infos">
@@ -36,7 +36,7 @@
     </div>
     <Card
       :opened="cardOpened"
-      :products="$store.getters['card/getContent']"
+      :products="$store.getters['card/products']"
     />
   </div>
 </template>

@@ -1,16 +1,16 @@
 export const state = () => ({
-    products: [],
-})
+    products: []
+});
 
 export const getters = {
-    getContent: (state) => state.products,
-    getTotalProductsPrice: (state) => state.products.reduce((acc, value) => value.totalPrice + acc, 0),
-    getTotalProducts: (state) => state.products.reduce((acc, value) => value.quantity + acc, 0),
-    getAllProductsIsbn: (state) => state.products.map(product => product.isbn)
-}
+    products: (state) => state.products,
+    total: (state) => state.products.reduce((acc, value) => value.totalPrice + acc, 0),
+    count: (state) => state.products.reduce((acc, value) => value.quantity + acc, 0),
+    getAllIsbn: (state) => state.products.map(product => Array(product.quantity).fill(product.isbn)).join()
+};
 
 export const actions = {
-    add({ commit, state }, pProduct){
+    add({ dispatch, commit, state }, pProduct){
         const productExist = state.products.find(product => product.isbn === pProduct.isbn);
         if(productExist){
             commit('ADD_EXISTED_PRODUCT_TO_CARD', productExist);
@@ -28,7 +28,7 @@ export const actions = {
     clear(){
         commit('REMOVE_PRODUCTS_FROM_CARD');
     }
-}
+};
 
 export const mutations = {
     ADD_PRODUCT_TO_CARD(state, product) {
@@ -48,4 +48,4 @@ export const mutations = {
     REMOVE_PRODUCTS_FROM_CARD(state){
         Object.assign(state, state());    
     }
-}
+};
