@@ -1,8 +1,8 @@
 <template>
     <div class="card-container" :style="CSSMarginRight">
         <header>
-            <p class="panier-title" v-if="opened">Panier</p>
-            <p class="total-price">Total {{ totalPromo }}€</p>
+            <p class="panier-title" v-if="opened">{{ $fixtures.card }} </p>
+            <p class="total-price">{{ $fixtures.total }} {{ totalPromo }}€</p>
         </header>
         <div class="card-picture-grid">
             <transition-group name="income">
@@ -10,18 +10,20 @@
                     v-for="(book, index) in products"
                     :key="book.isbn"
                     :book="book"
-                    @add="$store.dispatch('card/add', book)"
-                    @remove="$store.dispatch('card/remove', index)"
+                    @add="add(book)"
+                    @remove="remove(index)"
                 />
             </transition-group>
-            <div class="button secondary next" v-if="opened && products.length">Valider votre panier ></div>
+            <div class="button secondary next" v-if="opened && products.length">
+                {{ $fixtures.cardValidate }}
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 import Core from '~/core';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
     props: {
@@ -38,18 +40,24 @@ export default {
         products: {
             deep: true,
             async handler(){
-                if(this.cardIsbns){
-                    const { data } = await this.$api.offers(this.cardIsbns);
+                if(this.isbns){
+                    const { data } = await this.$api.offers(this.isbns);
                     const bestOffer = Core.getBestOffer(this.cardTotal, data.offers);
                     this.totalPromo = bestOffer.total;
                 }
             }
         }
     },
+    methods: {
+        ...mapActions({
+            add : 'card/add',
+            remove : 'card/remove'
+        })
+    },
     computed: {
         ...mapGetters({
             cardTotal: 'card/total',
-            cardIsbns: 'card/getAllIsbn'
+            isbns: 'card/getAllIsbn'
         }),
         CSSMarginRight(){
             let prop = 'margin-right : ';

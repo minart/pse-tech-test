@@ -13,8 +13,8 @@
       </div>
       <div class="center">
         <div class="logotype">
-          <p class="subtitle">Collection</p>
-          <h1>Henri potier</h1>
+          <p class="subtitle">{{ $fixtures.subtitle }}</p>
+          <h1>{{ $fixtures.title }} </h1>
         </div>
         <Nuxt />
       </div>
