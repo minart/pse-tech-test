@@ -20,51 +20,37 @@
 </template>
 
 <script>
-
 import Core from '~/core';
+import { mapGetters } from 'vuex';
 
 export default {
     props: {
         products : {
             type: Array,
-            default(){
-                return []
-            }
+            default: () => []
         },
         opened: {
             type: Boolean,
-            default(){
-                return false;
-            }
+            default: () => false
         }
     },
     watch: {
         products: {
             deep: true,
             async handler(){
-                const isbns = this.$store.getters['card/getAllIsbn'];
-                if(isbns){
-                    const { data } = await this.$api.offers(isbns);
-                    const formatedOffers = data.offers.map(offer => ({
-                        ...offer,
-                        calculate: function(price){
-                            return Core.offersCalculate[this.type]({
-                                price,
-                                step: this.sliceValue,
-                                value: this.value
-                            });
-                        }
-                    }));
-                    const total = this.$store.getters['card/total'];
-                    this.totalPromo = Math.min(...formatedOffers.map(offer => offer.calculate(total)));
-                }
-                else {
-                    this.totalPromo = 0;
+                if(this.cardIsbns){
+                    const { data } = await this.$api.offers(this.cardIsbns);
+                    const bestOffer = Core.getBestOffer(this.cardTotal, data.offers);
+                    this.totalPromo = bestOffer.total;
                 }
             }
         }
     },
     computed: {
+        ...mapGetters({
+            cardTotal: 'card/total',
+            cardIsbns: 'card/getAllIsbn'
+        }),
         CSSMarginRight(){
             let prop = 'margin-right : ';
             if(this.opened)

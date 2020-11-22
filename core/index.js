@@ -1,7 +1,35 @@
+const expression = {
+    percentage: (prop) => prop.price - (prop.price * prop.value / 100),
+    slice: (prop) => prop.price - Math.floor(prop.price / prop.step) * prop.value,
+    minus: (prop) => prop.price - prop.value
+}
+
+const formatOffers = function(offers){
+    return offers.map(offer => ({
+        ...offer,
+        calculate: function(price){
+            return expression[this.type]({
+                price,
+                step: this.sliceValue,
+                value: this.value
+            });
+        }
+    }));
+}
+
+const getBestOffer = function(total, offers){
+    const formatedOffer = formatOffers(offers);
+    const promos = formatedOffer.map(offer => ({
+        type: offer.type,
+        total: offer.calculate(total)
+    }));
+    return promos.reduce((acc, offer) => {
+        if(!acc.total || acc.total < offer.total)
+            acc = offer;
+        return acc;
+    });
+}
+
 export default {
-    offersCalculate: {
-        percentage: (prop) => prop.price - (prop.price * prop.value / 100),
-        slice: (prop) => prop.price - Math.floor(prop.price / prop.step) * prop.value,
-        minus: (prop) => prop.price - prop.value
-    }
+    getBestOffer
 }
