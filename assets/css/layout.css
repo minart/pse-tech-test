@@ -1,8 +1,5 @@
 html {
-    font-family:
-      'Segoe UI',
-      Roboto,
-      'Helvetica Neue';
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue';
     font-size: 16px;
     color: #707070;
     word-spacing: 1px;
@@ -12,28 +9,15 @@ html {
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
 }
-
-body {
-    color: #707070;
-}
-  
+body { color: #707070 }
 *,
 *::before,
 *::after {
     box-sizing: border-box;
     margin: 0;
 }
-
 .uplvl { z-index: 20 }
 .price { font-size: 1.4em; color: #707070 }
-
-.subtitle {
-    color: #ccc;
-    font-size: 16px;
-    position: relative;
-    top: 5px;
-    left: -50px;
-}
 h1 {
     font-family: 'Caveat', cursive;
     text-shadow: 0 1px 0 #333;
@@ -50,24 +34,16 @@ h2 {
     line-height: 16px;
     font-size: .9em;
 }
-a { text-decoration: none }
-.small { font-size: .7em }
 h3 {
     margin-left: 20px;
     font-family: 'Caveat', cursive;
     color: #DEE5BC;
     font-size: 45px;
 }
-.price {
-    font-size: 1.4em;
-    color: #707070;
-    text-align: center;
-  }
-.picture-border { 
-    border: 6px solid #fff;
-    box-shadow: 0 0 2px rgb(192, 192, 192);
-}
-  
+a { text-decoration: none }
+.small { font-size: .7em }
+.price { font-size: 1.4em; color: #707070; text-align: center }
+.picture-border { border: 6px solid #fff; box-shadow: 0 0 2px rgb(192, 192, 192) }
 .button {
     background-color: #fff;
     font-size: 20px;
@@ -80,43 +56,12 @@ h3 {
     text-align: center;
     box-sizing: border-box;
 }
-  
-.button.primary {
-    border: 1px solid #ccc;
-    color: #ccc;
-}
-
-.button.empty {
-    border: 1px solid transparent;
-    color: #ccc;
-}
-.button.empty:hover {
-    color: #333;
-}
-.button.secondary {
-    border: 1px solid #DEE5BC;
-    color: #DEE5BC;
-}
-
-.button.secondary:hover {
-    color: #fff;
-    background-color: #DEE5BC;
-}
-  
-.max-right .count {
-    border-top: 0;
-}
-  
-.max-right a.infos {
-    margin-top: auto;
-}
-  
-.button.nav {
-    color: #DBDBDB;
-    border: 1px solid #DBDBDB;
-}
-  
-.button.nav:hover {
-    background-color: #DBDBDB;
-    color: #fff;
-}
+.button.primary { border: 1px solid #ccc; color: #ccc }
+.button.empty { border: 1px solid transparent; color: #ccc }
+.button.empty:hover { color: #333 }
+.button.secondary { border: 1px solid #DEE5BC; color: #DEE5BC;}
+.button.secondary:hover { color: #fff; background-color: #DEE5BC }
+.max-right .count { border-top: 0 }
+.max-right a.infos { margin-top: auto }
+.button.nav { color: #DBDBDB; border: 1px solid #DBDBDB }
+.button.nav:hover { background-color: #DBDBDB; color: #fff }

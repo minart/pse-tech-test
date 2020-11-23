@@ -1,3 +1,5 @@
+const slugify = (text) => text.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
+
 const expression = {
     percentage: (prop) => prop.price - (prop.price * prop.value / 100),
     slice: (prop) => prop.price - Math.floor(prop.price / prop.step) * prop.value,
@@ -25,5 +27,6 @@ const getBestOffer = function(total, offers){
 }
 
 export default {
-    getBestOffer
+    getBestOffer,
+    slugify
 }

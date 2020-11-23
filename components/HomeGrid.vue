@@ -1,7 +1,7 @@
 <template>
     <div class="picture-grid">
         <div v-for="book in products" :key="book.isbn">
-            <img class="picture-border" width="90" :src="book.cover" /> 
+            <img class="picture-border" :alt="book.title" width="100" :src="book.cover" /> 
             <div class="right-grid-book">
                 <h2>{{ book.title }}</h2>
                 <p class="price">{{ book.price }}€</p>
@@ -23,31 +23,21 @@ export default {
     props: {
         products : {
             type: Array,
+            default: () => []
         }
-    },
-    methods: {
     }
 }
 </script>
 
 <style scoped>
-.actions > div {
-    width: 40px;
-}
-.picture-grid {
-    grid-template-columns: repeat(5, 5fr);
-    display: grid;
-    grid-gap: 1em;
-}
+.actions > div { width: 40px }
+.picture-grid { display: grid; grid-template-columns: repeat(5, 5fr); grid-gap: 1em }
 .picture-grid > div {
     text-align: center;
     transition: all .5s ease;
     position: relative;
     padding: 10px;
     border: 1px solid #fff;
-}
-.picture-grid > div:hover {
-    border: 1px solid #DEE5BC;
 }
 .picture-grid .actions {
     position: absolute;
@@ -58,32 +48,14 @@ export default {
     opacity: 0;
     transition: all .5s ease;
 }
-.actions .button {
-    background-color: #000;
-    border: 1px solid #000;
-}
-.actions .button.secondary {
-    border: 1px solid #DEE5BC;
-}
-.picture-grid > div:hover .actions {
-    opacity: 1;
-    margin-bottom: 0;
-}
-.picture-grid .actions > div {
-    cursor: pointer;
-}
-.right-grid-book {
-    display: flex;
-    flex-direction: column;
-}
+.picture-grid > div:hover { border: 1px solid #DEE5BC; }
+.actions .button { background-color: #000; border: 1px solid #000 }
+.actions .button.secondary { border: 1px solid #DEE5BC }
+.picture-grid > div:hover .actions { opacity: 1; margin-bottom: 0 }
+.picture-grid .actions > div { cursor: pointer }
+.right-grid-book { display: flex; flex-direction: column }
 
 @media (max-width:1400px) and (min-width:1000px) {
-    body {
-        background-color: aqua;
-    }
-    .picture-grid {
-        grid-template-columns: repeat(4, 5fr);
-    }
+    .picture-grid { grid-template-columns: repeat(4, 5fr) }
 }
-
 </style>

@@ -41,13 +41,6 @@ export default {
     display: flex;
     align-items: center;
 }
-.price {
-    text-align: right;
-}
-.count-picture .quantity, 
-.picture-border {
-    width: 60px;
-}
 .count-picture .quantity {
     color: #fff;
     top: 10px;
@@ -55,21 +48,12 @@ export default {
     font-size: 40px;
     position: absolute;
 }
-.actions > div {
-    width: 20px;
-    font-size: .8em; 
-}
-.price {
-    margin-left: auto;
-}
-.title {
-    width: 150px;
-}
-.count-picture {
-    position: relative;
-    margin: 0 20px 0 10px;
-}
-.unit-price {
-    color: #ccc;
-}
+.act
+.price { text-align: right }
+.count-picture .quantity, .picture-border { width: 60px }
+.actions > div { width: 20px; font-size: .8em }
+.price { margin-left: auto }
+.title { width: 150px }
+.count-picture { position: relative; margin: 0 20px 0 10px }
+.unit-price { color: #ccc }
 </style>

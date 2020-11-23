@@ -6,24 +6,25 @@ export const getters = {
     products: (state) => state.products,
     total: (state) => state.products.reduce((acc, value) => value.totalPrice + acc, 0),
     count: (state) => state.products.reduce((acc, value) => value.quantity + acc, 0),
-    getAllIsbn: (state) => state.products.map(product => Array(product.quantity).fill(product.isbn)).join()
+    getAllIsbn: (state) => 
+        state.products
+            .map(product => Array(product.quantity)
+            .fill(product.isbn))
+            .join()
 };
 
 export const actions = {
     add({ dispatch, commit, state }, pProduct){
         const productExist = state.products.find(product => product.isbn === pProduct.isbn);
-        if(productExist){
-            commit('ADD_EXISTED_PRODUCT_TO_CARD', productExist);
-        } else {
-            commit('ADD_PRODUCT_TO_CARD', pProduct);
-        }
+        (productExist)
+            ? commit('ADD_EXISTED_PRODUCT_TO_CARD', productExist)
+            : commit('ADD_PRODUCT_TO_CARD', pProduct)
     },
     remove({ commit, state }, index){
         const product = state.products[index];
-        if(product.quantity > 1)
-            commit('REMOVE_EXISTED_PRODUCT_FROM_CARD', product);
-        else
-            commit('REMOVE_PRODUCT_FROM_CARD', index);
+        (product.quantity > 1)
+            ? commit('REMOVE_EXISTED_PRODUCT_FROM_CARD', product)
+            : commit('REMOVE_PRODUCT_FROM_CARD', index)
     },
     clear(){
         commit('REMOVE_PRODUCTS_FROM_CARD');

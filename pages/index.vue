@@ -1,25 +1,34 @@
 <template>
   <div>
     <p class="search-box">
-      <input type="text" v-model="searchKey" @input="search" class="search" placeholder="Rechercher ...."/>
+      <input type="text" v-model="searchKey" @input="search" class="search" :placeholder="$fixtures.search"/>
       <font-awesome-icon :icon="['fas', 'search']"/>
     </p>
     <HomeGrid 
       :products="books"
-      @item-add="$store.dispatch('card/add', $event)"
-      @item-read="$router.push({ path: `/books/${$event.title}` })"
+      @item-add="add($event)"
+      @item-read="getBookDetails($event.title)"
     />
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
   methods: {
+    ...mapActions({
+      add : 'card/add'
+    }),
     search(){
       const regex = '\\b' + this.searchKey + '\\b';
-      const regex1 = RegExp(this.searchKey, 'g');
-      const finded = this.initialBooks.filter(book => book.title ? book.title && regex1.exec(book.title) : false);
+      const regex1 = RegExp(this.searchKey, 'i');
+      const finded = this.initialBooks.filter(book => book.title ? regex1.exec(book.title) : false);
       this.books = finded;
+    },
+    getBookDetails(title){
+      this.$router.push({ 
+        path: `/books/${this.$core.slugify(title)}`
+      });
     }
   },
   data(){
@@ -28,7 +37,7 @@ export default {
     }
   },
   async asyncData({ route, app, $axios }){
-    const { data } = await $axios.get('http://henri-potier.xebia.fr/books');
+    const { data } = await app.$api.books();
     return {
       books : data,
       initialBooks : data
@@ -58,15 +67,7 @@ export default {
     border: 0;
     width: 90%;
 }
-.search-box input::placeholder {
-    color: #ebebeb;
-    font-style: italic;
-}
-.search-box svg {
-    color: #DEE5BC;
-}
-.search-box input:focus {
-    outline: none;
-}
-
+.search-box input::placeholder { color: #ebebeb; font-style: italic }
+.search-box svg { color: #DEE5BC }
+.search-box input:focus { outline: none }
 </style>

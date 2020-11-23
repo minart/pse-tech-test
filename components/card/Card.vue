@@ -27,9 +27,7 @@
 </template>
 
 <script>
-import Core from '~/core';
 import { mapGetters, mapActions } from 'vuex';
-
 export default {
     props: {
         products : {
@@ -47,7 +45,7 @@ export default {
             async handler(){
                 if(this.isbns){
                     const { data } = await this.$api.offers(this.isbns);
-                    this.offer = Core.getBestOffer(this.cardTotal, data.offers);
+                    this.offer = this.$core.getBestOffer(this.cardTotal, data.offers);
                 } else {
                     this.offer = false;
                 }
@@ -88,7 +86,6 @@ header { height: 70px; display: flex; align-items: center; position: relative }
 header .total-price { width: 110px; text-align: center }
 .next { margin: 30px; padding: 0 10px 4px 10px; font-size: 1em}
 .panier-title { line-height: 68px; font-size: 22px; padding: 0 20px; }
-
 .income-enter-active, .income-leave-active { transition: all .5s ease }
 .income-enter { transform: translateY(20px); opacity: 0 }
 .income-leave-to { transform: translateX(20px); opacity: 0 }
