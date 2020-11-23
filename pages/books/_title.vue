@@ -42,8 +42,8 @@ export default {
         const id = data.findIndex(book => app.$core.slugify(book.title) === route.params.title);
         return {
             book : data[id],
-            next: data[id + 1] ? data[id + 1] : false,
-            prev: data[id - 1] ? data[id - 1] : false,
+            next: data[id + 1] && data[id + 1],
+            prev: data[id - 1] && data[id - 1],
         }
     }
 }

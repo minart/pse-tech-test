@@ -1,5 +1,4 @@
 export default {
-  // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'tech-test',
     meta: [
@@ -11,22 +10,15 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
-
-  // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
-
   css: ['~/assets/css/layout'],
-
-  // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     '@nuxtjs/google-fonts',
     '@nuxtjs/fontawesome',
   ],
-
   plugins: [
     '~/plugins/app'
   ],
-
   fontawesome: {
     icons: {
       solid: [
@@ -43,24 +35,18 @@ export default {
       ],
     }
   },
-
   googleFonts: {
     families: {
       Roboto: true,
       Caveat: [700],
     }
   },
-
-  // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
   ],
-
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
-
-  // Build Configuration (https://go.nuxtjs.dev/config-build)
+  axios: {
+    baseURL: 'http://henri-potier.xebia.fr'
+  },
   build: {
   }
 }
