@@ -18,16 +18,10 @@ const formatOffers = function(offers){
 }
 
 const getBestOffer = function(total, offers){
-    const formatedOffer = formatOffers(offers);
-    const promos = formatedOffer.map(offer => ({
-        type: offer.type,
-        total: offer.calculate(total)
-    }));
-    return promos.reduce((acc, offer) => {
-        if(!acc.total || acc.total < offer.total)
-            acc = offer;
-        return acc;
-    });
+    const formatedOffers = formatOffers(offers);
+    return formatedOffers
+        .map(offer => ({ type: offer.type, total: offer.calculate(total)}))
+        .reduce((acc, offer) => (!acc.total || acc.total > offer.total) ? acc = offer : acc);
 }
 
 export default {

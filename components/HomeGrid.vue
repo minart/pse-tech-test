@@ -1,5 +1,5 @@
 <template>
-    <div class="picture-grid" :style="{ gridTemplateColumns : getGridTemplateColumns }">
+    <div class="picture-grid">
         <div v-for="book in products" :key="book.isbn">
             <img class="picture-border" width="90" :src="book.cover" /> 
             <div class="right-grid-book">
@@ -23,17 +23,6 @@ export default {
     props: {
         products : {
             type: Array,
-        },
-        columns: {
-            type: Number,
-            default() {
-                return 5;
-            }
-        }
-    },
-    computed: {
-        getGridTemplateColumns() {
-            return `repeat(${this.columns}, 5fr)`;
         }
     },
     methods: {
@@ -46,6 +35,7 @@ export default {
     width: 40px;
 }
 .picture-grid {
+    grid-template-columns: repeat(3, 5fr);
     display: grid;
     grid-gap: 0px;
 }
@@ -82,4 +72,14 @@ export default {
     display: flex;
     flex-direction: column;
 }
+
+@media (max-width:1300px) and (min-width:1000px) {
+    body {
+        background-color: aqua;
+    }
+    .picture-grid {
+        grid-template-columns: repeat(2, 5fr);
+    }
+}
+
 </style>

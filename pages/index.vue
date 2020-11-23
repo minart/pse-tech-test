@@ -6,7 +6,6 @@
     </p>
     <HomeGrid 
       :products="books"
-      :columns="4"
       @item-add="$store.dispatch('card/add', $event)"
       @item-read="$router.push({ path: `/books/${$event.title}` })"
     />

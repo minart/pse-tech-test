@@ -37,6 +37,7 @@ export default {
 <style scoped>
 .item {
     margin-bottom: 10px;
+    height: 85px;
     display: flex;
     align-items: center;
 }

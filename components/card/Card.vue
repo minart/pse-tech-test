@@ -1,8 +1,8 @@
 <template>
-    <div class="card-container" :style="CSSMarginRight">
+    <div class="card-container">
         <header>
             <p class="panier-title" v-if="opened">{{ $fixtures.card }} </p>
-            <p class="total-price">{{ $fixtures.total }} {{ totalPromo }}€</p>
+            <p class="total-price" v-if="offer.total">{{ $fixtures.total }} {{ carTotalWithOffer }}€</p>
         </header>
         <div class="card-picture-grid">
             <transition-group name="income">
@@ -14,8 +14,13 @@
                     @remove="remove(index)"
                 />
             </transition-group>
+            <div class="offers" v-if="offer.type && opened">
+                <span class="new">{{ carTotalWithOffer }}€</span>
+                {{ $fixtures.insteadOf }}
+                <span class="old">{{ cardTotal }}€</span>
+            </div>
             <div class="button secondary next" v-if="opened && products.length">
-                {{ $fixtures.cardValidate }}
+                {{ $fixtures.cardValidate }} 
             </div>
         </div>
     </div>
@@ -42,8 +47,9 @@ export default {
             async handler(){
                 if(this.isbns){
                     const { data } = await this.$api.offers(this.isbns);
-                    const bestOffer = Core.getBestOffer(this.cardTotal, data.offers);
-                    this.totalPromo = bestOffer.total;
+                    this.offer = Core.getBestOffer(this.cardTotal, data.offers);
+                } else {
+                    this.offer = false;
                 }
             }
         }
@@ -59,33 +65,37 @@ export default {
             cardTotal: 'card/total',
             isbns: 'card/getAllIsbn'
         }),
-        CSSMarginRight(){
-            let prop = 'margin-right : ';
-            if(this.opened)
-                return prop += '0px';
-            return this.products.length > 0 ? prop += '-350px' : prop += '-500px';
+        carTotalWithOffer(){
+            return this.offer.total;
         }
     },
     data(){
         return {
-            totalPromo: 0,
+            offer: {
+                total: 0,
+                type: false
+            }
         }
     }
 }
 </script>
 
 <style scoped>
+.old {
+    text-decoration: line-through;
+}
+.offers {
+    text-align: center;
+    margin-top: 40px;
+}
 .card-picture-grid {
     padding: 10px;
 }
 .card-container {
+    bottom: 0;
     box-shadow: 0 -20px 50px #ebebeb;
     z-index: 0;
-    right: 0px;
-    top: 0;
-    bottom: 0;
-    margin-right: -350px;
-    width: 500px;
+    overflow: hidden;
 }
 header {
     height: 70px;

@@ -1,6 +1,11 @@
 <template>
-  <div class="global">
-    <div class="layout" ref="layout">
+    <div 
+      class="layout" 
+      ref="layout" 
+      :class="{ 
+        'opened-card' : cardOpened,
+        'has-product' : getCardProductsCount
+      }">
       <div class="max-left">
         <NuxtLink to="/" class="button primary">
           <font-awesome-icon :icon="['fas', 'dungeon']"/>
@@ -26,28 +31,35 @@
       <div class="max-right">
         <CardButtons
           :icon="getCardIcon"
-          :total="$store.getters['card/count']"
+          :total="getCardProductsCount"
           @click="cardOpened = !cardOpened"
         />
         <a href="#" class="button secondary infos">
           <font-awesome-icon :icon="['fa', 'mug-hot']"/>
         </a>
       </div>
+      <Card
+        :opened="cardOpened"
+        :products="getCardProducts"
+      />
     </div>
-    <Card
-      :opened="cardOpened"
-      :products="$store.getters['card/products']"
-    />
-  </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   computed: {
+    ...mapGetters({
+      getCardProducts : 'card/products',
+      getCardProductsCount : 'card/count'
+    }),
     bookPage(){
       return this.$route.name === 'books-title';
     },
     getCardIcon(){
+      if(!this.getCardProductsCount)
+        return 'shopping-cart';
       return this.cardOpened ? 'minus' : 'shopping-cart';
     }
   },
@@ -60,20 +72,21 @@ export default {
 </script>
 
 <style scoped>
-.global {
-  overflow: hidden;
-  display: flex;
-}
 .layout {
-    padding: 1em;
     box-sizing: border-box;
     display: grid;
-    grid-gap: 0.5em;
+    padding: 1em;
+    grid-gap: 1em;
     height: 100vh;
-    width: 100vw;
-    grid-template-columns: 40px 40px auto 40px 40px;
     grid-template-areas:
       "mleft left center right mright";
+    grid-template-columns : 40px 40px auto 40px 40px 0;
+}
+.has-product {
+  grid-template-columns : 40px 40px auto 40px 40px 120px;
+}
+.opened-card {
+  grid-template-columns : 40px 40px auto 40px 40px 350px;
 }
 .max-left { grid-area: mleft }
 .left {
@@ -97,4 +110,6 @@ export default {
   text-align: center;
   margin-bottom: 40px;
 }
+
+
 </style>
