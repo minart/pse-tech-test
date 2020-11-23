@@ -65,3 +65,7 @@ a { text-decoration: none }
 .max-right a.infos { margin-top: auto }
 .button.nav { color: #DBDBDB; border: 1px solid #DBDBDB }
 .button.nav:hover { background-color: #DBDBDB; color: #fff }
+
+@media (max-width:800px){ 
+    h1 { font-size: 3em }
+}

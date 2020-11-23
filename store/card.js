@@ -3,14 +3,12 @@ export const state = () => ({
 });
 
 export const getters = {
-    products: (state) => state.products,
-    total: (state) => state.products.reduce((acc, value) => value.totalPrice + acc, 0),
-    count: (state) => state.products.reduce((acc, value) => value.quantity + acc, 0),
-    getAllIsbn: (state) => 
-        state.products
-            .map(product => Array(product.quantity)
-            .fill(product.isbn))
-            .join()
+    products:   (state) => state.products,
+    total:      (state) => state.products.reduce((acc, value) => value.totalPrice + acc, 0),
+    count:      (state) => state.products.reduce((acc, value) => value.quantity + acc, 0),
+    getAllIsbn: (state) => state.products
+                            .map(product => Array(product.quantity).fill(product.isbn))
+                            .join()
 };
 
 export const actions = {

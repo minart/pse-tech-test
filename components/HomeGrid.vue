@@ -31,7 +31,7 @@ export default {
 
 <style scoped>
 .actions > div { width: 40px }
-.picture-grid { display: grid; grid-template-columns: repeat(5, 5fr); grid-gap: 1em }
+.picture-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 1em }
 .picture-grid > div {
     text-align: center;
     transition: all .5s ease;
@@ -48,14 +48,34 @@ export default {
     opacity: 0;
     transition: all .5s ease;
 }
-.picture-grid > div:hover { border: 1px solid #DEE5BC; }
+.picture-grid > div:hover { box-shadow: inset 0 20px 50px #ebebeb; }
 .actions .button { background-color: #000; border: 1px solid #000 }
 .actions .button.secondary { border: 1px solid #DEE5BC }
 .picture-grid > div:hover .actions { opacity: 1; margin-bottom: 0 }
 .picture-grid .actions > div { cursor: pointer }
 .right-grid-book { display: flex; flex-direction: column }
 
-@media (max-width:1400px) and (min-width:1000px) {
-    .picture-grid { grid-template-columns: repeat(4, 5fr) }
+@media (min-width:1100px){ 
+    .picture-grid { grid-template-columns: repeat(4, 1fr) } 
+}
+@media (max-width:800px){
+    h2, .price { text-align: left }
+    .right-grid-book { padding: 0 12px; justify-content: space-between; }
+    .picture-grid { grid-template-columns: repeat(1, 1fr) }
+    .picture-grid > div { display: flex; }
+    .actions .button { border: 0; background-color: transparent }
+    .picture-grid .actions {
+        position: relative;
+        display: flex;
+        opacity: 1;
+        left: auto;
+        right: auto;
+        transform: none;
+        top: auto;
+        margin-top: unset;
+    }
+}
+@media (max-width:800px) and (min-width:650px) {
+    .picture-grid { grid-template-columns: repeat(2, 1fr) } 
 }
 </style>

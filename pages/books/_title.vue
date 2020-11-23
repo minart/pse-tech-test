@@ -8,12 +8,12 @@
         <div class="container">
             <div class="left">
                 <img class="picture-border" width="100%" :src="book.cover" :alt="book.title" />
-                <p class="isbn">{{ book.isbn }}</p>
             </div>
             <div>
                 <h2>{{ book.title }}</h2>
                 <div class="shipping">
                     <div class="price">{{ book.price }} €</div>
+                    <p class="isbn">{{ book.isbn }}</p>
                     <div class="button secondary" @click="add(book)">{{ $fixtures.addToCard }}</div>
                 </div>
                 <div class="synopsis">
@@ -58,24 +58,36 @@ h2 {
 }
 .book-detail {
     box-sizing: border-box;
-    align-items: center;
     display: grid;
     padding: 1em;
     grid-gap: 1em;
     grid-template-columns : 40px auto 40px;
 }
 .container, .shipping { display: flex }
-.shipping { justify-content: space-between; padding: 20px 0 }
-.shipping .button { padding: 0 12px }
-.container .left { min-width: 280px; max-width: 30%; margin-right: 2em }
+.shipping { flex-direction: column; justify-content: space-between; padding: 20px 0; align-items: center; }
+.shipping .button { padding: 0 12px; margin-top: 30px }
+.container .left { min-width: 140px; max-width: 15%; margin-right: 2em }
 .synopsis { padding: 20px; border: 1px dotted #ebebeb }
 .synopsis > p { margin: 10px 0 }
 .isbn {
-    border: 1px solid #ebebeb;
-    border-radius: 20px;
-    line-height: 30px;
-    margin-top: 20px;
     font-size: .8em;
     text-align: center;
+}
+
+@media (min-width:1101px){
+    .container .left { min-width: 180px; max-width: 20% }
+    .shipping { flex-direction: row }
+    .shipping .button { margin-top: 0 }
+}
+
+@media (max-width:1100px) and (min-width:801px) {
+    h2 { text-align: center }
+}
+
+@media (max-width:800px) and (min-width:0px) {
+    .container .left { min-width: 100%; max-width: 100% }
+    .book-detail { padding: 0 }
+    .container, .shipping { flex-direction: column }
+    .synopsis { padding: 0; border: 0 }
 }
 </style>

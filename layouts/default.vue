@@ -19,9 +19,6 @@
           :total="getCardProductsCount"
           @click="handleButtonCard"
         />
-        <a href="#" class="button secondary infos">
-          <font-awesome-icon :icon="['fa', 'mug-hot']"/>
-        </a>
       </div>
       <div class="card-container">
         <Card :opened="cardOpened" :products="getCardProducts"/>
@@ -86,4 +83,8 @@ export default {
 .center { grid-area: center; margin-top: 30px }
 .max-right { display: flex; flex-direction: column; grid-area: mright; }
 .right { display: flex; align-items: center; grid-area: right; }
+
+@media (max-width:800px){ 
+  .layout { padding: 4px; grid-gap: 0 }
+}
 </style>
