@@ -65,6 +65,7 @@ export default {
 }
 .card-container {
   bottom: 0;
+  background-color: #fff;
   box-shadow: 0 -20px 50px #ebebeb;
   z-index: 0;
   overflow: hidden;
@@ -84,7 +85,16 @@ export default {
 .max-right { display: flex; flex-direction: column; grid-area: mright; }
 .right { display: flex; align-items: center; grid-area: right; }
 
-@media (max-width:800px){ 
-  .layout { padding: 4px; grid-gap: 0 }
+@media (max-width:800px){  
+  .layout { padding: 4px; grid-gap: 0 } 
+  .max-right {     
+    width: 40px;
+    position: absolute;
+    z-index: 20;
+    right: 4px;
+    top: 4px;
+  }
+  .has-product { grid-template-columns : 40px auto 40px 0 }
+  .opened-card { grid-template-columns : 0 0 0 100% }
 }
 </style>

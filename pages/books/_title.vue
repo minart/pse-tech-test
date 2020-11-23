@@ -69,21 +69,22 @@ h2 {
 .container .left { min-width: 140px; max-width: 15%; margin-right: 2em }
 .synopsis { padding: 20px; border: 1px dotted #ebebeb }
 .synopsis > p { margin: 10px 0 }
-.isbn {
-    font-size: .8em;
-    text-align: center;
-}
+.isbn { font-size: .8em; text-align: center; }
 
+@media (max-width:1101px){
+    .book-detail { padding: 0 }
+    .container .left { margin: 0 auto; }
+}
 @media (min-width:1101px){
     .container .left { min-width: 180px; max-width: 20% }
     .shipping { flex-direction: row }
     .shipping .button { margin-top: 0 }
 }
-
 @media (max-width:1100px) and (min-width:801px) {
     h2 { text-align: center }
+    .container, .shipping { flex-direction: column }
+    .book-detail { padding: 0 }
 }
-
 @media (max-width:800px) and (min-width:0px) {
     .container .left { min-width: 100%; max-width: 100% }
     .book-detail { padding: 0 }
