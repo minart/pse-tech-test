@@ -6,5 +6,6 @@ export default {
     search: 'Rechercher ...',
     total: 'Total',
     promo: 'Vous bénéficier d\'une promotion de',
-    insteadOf: 'Au lieu de'
+    insteadOf: 'Au lieu de',
+    noResults: 'Aucun résultat ...'
 }

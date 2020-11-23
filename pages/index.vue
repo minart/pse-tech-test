@@ -4,7 +4,7 @@
       <input type="text" v-model="searchKey" @input="search" class="search" :placeholder="$fixtures.search"/>
       <font-awesome-icon :icon="['fas', 'search']"/>
     </p>
-    <HomeGrid 
+    <ProductsGrid 
       :products="books"
       @item-add="add($event)"
       @item-read="getBookDetails($event.title)"

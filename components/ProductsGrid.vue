@@ -1,6 +1,6 @@
 <template>
     <div class="picture-grid">
-        <div v-for="book in products" :key="book.isbn">
+        <div v-if="products" v-for="book in products" :key="book.isbn">
             <img class="picture-border" :alt="book.title" width="100" :src="book.cover" /> 
             <div class="right-grid-book">
                 <h2>{{ book.title }}</h2>
@@ -15,6 +15,7 @@
                 </div>
             </div>
         </div>
+        <div>{{ $fixtures.noResults }}</div>
     </div>
 </template>
 
@@ -30,6 +31,7 @@ export default {
 </script>
 
 <style scoped>
+.no-results { text-align: center }
 .actions > div { width: 40px }
 .picture-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 1em }
 .picture-grid > div {
