@@ -35,31 +35,35 @@ export default {
     width: 40px;
 }
 .picture-grid {
-    grid-template-columns: repeat(3, 5fr);
+    grid-template-columns: repeat(5, 5fr);
     display: grid;
-    grid-gap: 0px;
-}
-.picture-border { 
-    margin-right: 20px; 
-    align-self: flex-start;
+    grid-gap: 1em;
 }
 .picture-grid > div {
-    display: flex;
+    text-align: center;
     transition: all .5s ease;
     position: relative;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #fff;
 }
 .picture-grid > div:hover {
-    border-bottom: 1px solid #DEE5BC;
+    border: 1px solid #DEE5BC;
 }
 .picture-grid .actions {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top: 35px;
     margin-top: auto;
     opacity: 0;
     transition: all .5s ease;
-    justify-content: center;
-    margin-bottom: -20px;
-    display: flex;
+}
+.actions .button {
+    background-color: #000;
+    border: 1px solid #000;
+}
+.actions .button.secondary {
+    border: 1px solid #DEE5BC;
 }
 .picture-grid > div:hover .actions {
     opacity: 1;
@@ -73,12 +77,12 @@ export default {
     flex-direction: column;
 }
 
-@media (max-width:1300px) and (min-width:1000px) {
+@media (max-width:1400px) and (min-width:1000px) {
     body {
         background-color: aqua;
     }
     .picture-grid {
-        grid-template-columns: repeat(2, 5fr);
+        grid-template-columns: repeat(4, 5fr);
     }
 }
 

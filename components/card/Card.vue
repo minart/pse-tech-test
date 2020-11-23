@@ -1,5 +1,5 @@
 <template>
-    <div class="card-container">
+    <div>
         <header>
             <p class="panier-title" v-if="opened">{{ $fixtures.card }} </p>
             <p class="total-price" v-if="offer.total">{{ $fixtures.total }} {{ carTotalWithOffer }}€</p>
@@ -20,7 +20,7 @@
                 <span class="old">{{ cardTotal }}€</span>
             </div>
             <div class="button secondary next" v-if="opened && products.length">
-                {{ $fixtures.cardValidate }} 
+                {{ $fixtures.cardValidate }}
             </div>
         </div>
     </div>
@@ -81,56 +81,15 @@ export default {
 </script>
 
 <style scoped>
-.old {
-    text-decoration: line-through;
-}
-.offers {
-    text-align: center;
-    margin-top: 40px;
-}
-.card-picture-grid {
-    padding: 10px;
-}
-.card-container {
-    bottom: 0;
-    box-shadow: 0 -20px 50px #ebebeb;
-    z-index: 0;
-    overflow: hidden;
-}
-header {
-    height: 70px;
-}
-header .total-price {
-    width: 110px;
-    text-align: center;
-}
-.next {
-    margin: 30px;
-    padding: 0 10px 4px 10px;
-    font-size: 1em;
-}
-.card-container header {
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-.panier-title {
-    line-height: 68px;
-    font-size: 22px;
-    padding: 0 20px;
-}
-.income-enter-active {
-  transition: all .5s ease;
-}
-.income-leave-active {
-  transition: all .5s ease;
-}
-.income-enter {
-    transform: translateY(20px);
-    opacity: 0;
-}
-.income-leave-to {
-    transform: translateX(20px);
-    opacity: 0;
-}
+.old { text-decoration: line-through }
+.offers { text-align: center; margin-top: 40px }
+.card-picture-grid { padding: 10px }
+header { height: 70px; display: flex; align-items: center; position: relative }
+header .total-price { width: 110px; text-align: center }
+.next { margin: 30px; padding: 0 10px 4px 10px; font-size: 1em}
+.panier-title { line-height: 68px; font-size: 22px; padding: 0 20px; }
+
+.income-enter-active, .income-leave-active { transition: all .5s ease }
+.income-enter { transform: translateY(20px); opacity: 0 }
+.income-leave-to { transform: translateX(20px); opacity: 0 }
 </style>

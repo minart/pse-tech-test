@@ -1,7 +1,7 @@
 <template>
   <div>
     <p class="search-box">
-      <input type="text" class="search" placeholder="Rechercher ...."/>
+      <input type="text" v-model="searchKey" @input="search" class="search" placeholder="Rechercher ...."/>
       <font-awesome-icon :icon="['fas', 'search']"/>
     </p>
     <HomeGrid 
@@ -14,10 +14,24 @@
 
 <script>
 export default {
+  methods: {
+    search(){
+      const regex = '\\b' + this.searchKey + '\\b';
+      const regex1 = RegExp(this.searchKey, 'g');
+      const finded = this.initialBooks.filter(book => book.title ? book.title && regex1.exec(book.title) : false);
+      this.books = finded;
+    }
+  },
+  data(){
+    return {
+      searchKey : ''
+    }
+  },
   async asyncData({ route, app, $axios }){
     const { data } = await $axios.get('http://henri-potier.xebia.fr/books');
     return {
-      books : data
+      books : data,
+      initialBooks : data
     }
   }
 }
