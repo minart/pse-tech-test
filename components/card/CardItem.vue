@@ -8,7 +8,6 @@
                 <font-awesome-icon :icon="['fas', 'plus']"  />
             </div>
         </div>
-
         <div class="count-picture"> 
             <div class="quantity">{{ book.quantity }}</div>
                 <img class="picture-border" width="60" :src="book.cover" /> 

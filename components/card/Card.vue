@@ -2,7 +2,7 @@
     <div>
         <header>
             <p class="panier-title" v-if="opened">{{ $fixtures.card }} </p>
-            <p class="total-price" v-if="offer.total">{{ $fixtures.total }} {{ carTotalWithOffer }}€</p>
+            <p class="total-price" v-if="offer.total">{{ $fixtures.total }} {{ offer.total }}€</p>
         </header>
         <div class="card-picture-grid">
             <transition-group name="income">
@@ -15,7 +15,7 @@
                 />
             </transition-group>
             <div class="offers" v-if="offer.type && opened">
-                <span class="new">{{ carTotalWithOffer }}€</span>
+                <span class="new">{{ offer.total }}€</span>
                 {{ $fixtures.insteadOf }}
                 <span class="old">{{ cardTotal }}€</span>
             </div>
@@ -42,13 +42,11 @@ export default {
     watch: {
         products: {
             deep: true,
-            async handler(){
-                if(this.isbns){
-                    const { data } = await this.$api.offers(this.isbns);
-                    this.offer = this.$core.getBestOffer(this.cardTotal, data.offers);
-                } else {
-                    this.offer = false;
-                }
+            handler(){
+                this.offer = 
+                    this.isbns
+                    ? this.getBestOffer(this.isbns)
+                    : false;
             }
         }
     },
@@ -56,16 +54,17 @@ export default {
         ...mapActions({
             add : 'card/add',
             remove : 'card/remove'
-        })
+        }),
+        async getBestOffer(isbns){
+            const { data } = await this.$api.offers(isbns);
+            this.offer = this.$core.getBestOffer(this.cardTotal, data.offers);
+        }
     },
     computed: {
         ...mapGetters({
             cardTotal: 'card/total',
             isbns: 'card/getAllIsbn'
-        }),
-        carTotalWithOffer(){
-            return this.offer.total;
-        }
+        })
     },
     data(){
         return {
