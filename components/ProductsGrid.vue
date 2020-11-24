@@ -1,21 +1,25 @@
 <template>
     <div class="picture-grid">
-        <div v-if="products" v-for="book in products" :key="book.isbn">
-            <img class="picture-border" :alt="book.title" width="100" :src="book.cover" /> 
-            <div class="right-grid-book">
-                <h2>{{ book.title }}</h2>
-                <p class="price">{{ book.price }}€</p>
-                <div class="actions">
-                    <div @click="$emit('item-read', book)" class="button nav info">
-                        <font-awesome-icon :icon="['fas', 'info']" />
-                    </div>
-                    <div @click="$emit('item-add', book)" class="button secondary">
-                        <font-awesome-icon :icon="['fas', 'plus']" />
+        <template v-if="products.length">
+            <div v-for="book in products" :key="book.isbn">
+                <img class="picture-border" :alt="book.title" width="100" :src="book.cover" /> 
+                <div class="right-grid-book">
+                    <h2>{{ book.title }}</h2>
+                    <p class="price">{{ book.price }}€</p>
+                    <div class="actions">
+                        <div @click="$emit('item-read', book)" class="button nav info">
+                            <font-awesome-icon :icon="['fas', 'info']" />
+                        </div>
+                        <div @click="$emit('item-add', book)" class="button secondary">
+                            <font-awesome-icon :icon="['fas', 'plus']" />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div>{{ $fixtures.noResults }}</div>
+        </template>
+        <template v-else>
+            <div>{{ $fixtures.noResults }}</div>
+        </template>
     </div>
 </template>
 
